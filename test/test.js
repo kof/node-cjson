@@ -13,7 +13,7 @@ var data = {
         "key": "/*value*/"
     },
     conf5: {"'key/*test*/'": "'value//test'"},
-    conf6: {"key\"/*test*/'": "value\"//test"},
+    conf6: {"key\"/*test*/": "value\"//test"},
 };
 
 
@@ -37,7 +37,7 @@ a.deepEqual(cjson.load(fixtures + '/conf6.json'), data.conf6, 'escaped double qu
 
 var data1 = {
     conf1: {key: 'value'},
-    conf6: {"key\"/*test*/'": "value\"//test"}
+    conf6: data.conf6
 };
 
 a.deepEqual(cjson.load([fixtures + '/conf1.json', fixtures + '/conf6.json']), data1, 'load array of jsons');
@@ -45,7 +45,7 @@ a.deepEqual(cjson.load([fixtures + '/conf1.json', fixtures + '/conf6.json']), da
 
 var data2 = {
     key: 'value',
-    "key\"/*test*/'": "value\"//test"
+    "key\"/*test*/": "value\"//test"
 };
 
 a.deepEqual(cjson.load([fixtures + '/conf1.json', fixtures + '/conf6.json'], true), data2, 'load array of jsons and merge them');
