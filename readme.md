@@ -8,6 +8,21 @@ Well, you could just evaluate json file as a javascript using one-liner, right?
 
 The purpose of this module is to avoid dirty js configs and to enable clear, consistent, secure, portable, JSON valid and shiny notation :)
 
+CJSON supports javascript type of comments, singleline "//" and  multiline "/**/". It takes care about comments inside of json strings.
+
+Example of such shiny config file:
+	
+	/*
+	 * This is my app configuration file.
+	 * 
+	 */
+	{
+		"host": "localhost",
+		// app is listening on this port
+		"port": 8888
+	}
+
+
 ## API
 
 ### load the module
@@ -43,6 +58,28 @@ Load config file from given path, array of paths or directory. Optionaly pass `t
 	
 	// load all config files from a directory
 	var conf = cjson.load('/path/to/your/configs');
+	
+	// overwriting dev config with production
+	var paths = ['/path/to/conf.json'];
+	if (process.env.NODE_ENV ==='production') {
+		paths.push('/path/to/conf-prod.json');
+	}
+	var conf = cjson.load(paths, true);
+
+### cjson.extend([deep], target, object1, [objectN])
+
+Merge the contents of two or more objects together into the first object. 
+
+- `deep` If true, the merge becomes recursive.
+- `target` The object to extend. It will receive the new properties.
+- `object1` An object containing additional properties to merge in.
+- `objectN` Additional objects containing properties to merge in.
+
+Example:
+
+	var object = $.extend({}, object1, object2);
+
+
 	
 ## Installation
 
