@@ -6,7 +6,7 @@ JSON is perfect for writing config files, except of one problem - there is no co
 
 Well, you could just evaluate json file as a javascript using one-liner, right?
 
-The purpose of this module is to avoid dirty js configs and to enable clear, consistent, secure and shiny notation :)
+The purpose of this module is to avoid dirty js configs and to enable clear, consistent, secure, portable JSON valid and shiny notation :)
 
 ## API
 
