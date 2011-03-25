@@ -14,6 +14,8 @@ var data = {
     },
     conf5: {"'key/*test*/'": "'value//test'"},
     conf6: {"key\"/*test*/": "value\"//test"},
+    conf7: {"key": "{{root}}/src"}
+
 };
 
 
@@ -34,6 +36,7 @@ a.deepEqual(cjson.load(fixtures + '/conf5.json'), data.conf5, 'single and double
 
 a.deepEqual(cjson.load(fixtures + '/conf6.json'), data.conf6, 'escaped double quote inside of a string');
 
+a.deepEqual(cjson.load(fixtures + '/conf7.json', {replace: {root: '/usr'}}), {"key": "/usr/src"}, 'tmpl replacement');
 
 var data1 = {
     conf1: {key: 'value'},
@@ -50,10 +53,7 @@ var data2 = {
 
 a.deepEqual(cjson.load([fixtures + '/conf1.json', fixtures + '/conf6.json'], true), data2, 'load array of jsons and merge them');
 
-
-
 a.deepEqual(cjson.load(fixtures), data, 'load all and merge them');
-
 
 
 console.log('All tests passed.');

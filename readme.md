@@ -28,9 +28,20 @@ Example of such shiny config file:
 ### load the module
 	var cjson = require('cjson');
 
-### cjson.load(path, [merge]);
+### cjson.load(path, [options]);
 
-Load config file from given path, array of paths or directory. Optionaly pass `true` as second param and configs will be merged together.
+Load config file from given path, array of paths or directory. Second parameter is optional and can be a boolean or object. 
+
+`options` defaults:
+	{
+		merge: false,
+		replace: null
+	}
+
+If you pass `true` as second param, its the same like `{merge: true}`, so it is a shortcut for merge = true and will merge all configs together.
+`replace` key in options triggers using micro template engine. Its value should be a hash, see `cjson.replace`.
+ 
+Examples:
 	
 	// just one config 
 	var conf = cjson.load('/path/to/your/config.json');
@@ -79,7 +90,18 @@ Example:
 
 	var object = $.extend({}, object1, object2);
 
+### cjson.decomment(str)
 
+Remove comments. It supports javascript style comments, singleline - '//' and multiline - '/* */'. It takes care about comments inside of key and value strings.
+
+
+### cjson.replace(str, obj)
+
+Micro template engine. Replace all strings {{key}} contained in obj.
+
+Example:
+	var str = '{"path": "{{root}}/src"}';
+	cjson.replace(str, {root: '/usr'}); // '{"path": "/usr/src"}'  
 	
 ## Installation
 
