@@ -1,4 +1,4 @@
-## CJSON - comments enabled json loader (Commented Javascript Object Notation)
+## CJSON (Commented Javascript Object Notation) is a comments enabled json config loader. 
 
 JSON has a good spec, is implemented in every language, has easy to read syntax and is much more powerfull then ini files.
 
@@ -6,9 +6,9 @@ JSON is perfect for writing config files, except of one problem - there is no co
 
 Well, you could just evaluate json file as a javascript using one-liner, right?
 
-The purpose of this module is to avoid dirty js configs and to enable clear, consistent, secure, portable, JSON valid and shiny notation :)
+The purpose of this module is to avoid dirty javascript configs and to enable clean, consistent, secure, portable and JSON valid notation.
 
-CJSON supports javascript type of comments, singleline "//" and  multiline "/**/". It takes care about comments inside of json strings.
+CJSON supports javascript style comments: singleline "//" and  multiline "/**/". It takes care about comments inside of strings.
 
 Example of such shiny config file:
 	
@@ -30,7 +30,10 @@ Example of such shiny config file:
 
 ### cjson.load(path, [options]);
 
-Load config file from given path, array of paths or directory. Second parameter is optional and can be a boolean or object. 
+Load config file from given path, array of paths or directory. Second parameter is optional and can be a boolean or object.
+ 
+- `path` {string} absolute path to the file
+- `options` {boolean|Object} optional options 
 
 `options` defaults:
 	{
@@ -38,8 +41,8 @@ Load config file from given path, array of paths or directory. Second parameter 
 		replace: null
 	}
 
-If you pass `true` as second param, its the same like `{merge: true}`, so it is a shortcut for merge = true and will merge all configs together.
-`replace` key in options triggers using micro template engine. Its value should be a hash, see `cjson.replace`.
+If you pass `true` as second param, its the same like `{merge: true}` and will merge all configs together.
+`replace` allows you to do some string replacements, see `cjson.replace`.
  
 Examples:
 	
@@ -92,15 +95,15 @@ Example:
 
 ### cjson.decomment(str)
 
-Remove comments. It supports javascript style comments, singleline - '//' and multiline - '/* */'. It takes care about comments inside of key and value strings.
+Remove javascript style comments, singleline - '//' and multiline - '/**/'. It takes care about comments inside of strings and escaping.
 
 
 ### cjson.replace(str, obj)
 
-Micro template engine. Replace all strings {{key}} contained in obj.
+Replace all strings `{{key}}` contained in `{key: 'value'}`, where `key` can be any property of passed `obj`.
 
 Example:
-	var str = '{"path": "{{root}}/src"}';
+	var str = '{"path": "{{root}}/src"}'; // json file contents
 	cjson.replace(str, {root: '/usr'}); // '{"path": "/usr/src"}'  
 	
 ## Installation
