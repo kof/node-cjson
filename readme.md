@@ -95,15 +95,19 @@ Example:
 
 ### cjson.decomment(str)
 
-Remove javascript style comments, singleline - '//' and multiline - '/**/'. It takes care about comments inside of strings and escaping.
+Remove javascript style comments, singleline - '//' and multiline - '/**/'. It takes care 
+about comments inside of strings and escaping.
 
 ### cjson.parse(str, [reviver])
 
-Remove comments using `.decomment` and then use JSON.parse. Optional `reviver` arguments comes from JSON.parse method.
+Like `JSON.parse`, but it takes care about comments. Optional `reviver` argument 
+is for `JSON.parse` method and will be called for every key and value at every level 
+of the final result
 
 ### cjson.replace(str, obj)
 
-Replace all strings `{{key}}` contained in `{key: 'value'}`, where `key` can be any property of passed `obj`.
+Replace all strings `{{key}}` contained in `{key: 'value'}`, where `key` can be any 
+property of passed `obj`.
 
 Example:
 	var str = '{"path": "{{root}}/src"}'; // json file contents
