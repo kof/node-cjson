@@ -55,6 +55,9 @@ a.deepEqual(cjson.load([fixtures + '/conf1.json', fixtures + '/conf6.json'], tru
 
 a.deepEqual(cjson.load(fixtures), data, 'load all and merge them');
 
+var str = require('fs').readFileSync(fixtures + '/conf2.json').toString();
+
+a.deepEqual(cjson.parse(str), data.conf2, '.parse method with comments');
 
 console.log('All tests passed.');
 

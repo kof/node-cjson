@@ -97,6 +97,9 @@ Example:
 
 Remove javascript style comments, singleline - '//' and multiline - '/**/'. It takes care about comments inside of strings and escaping.
 
+### cjson.parse(str, [reviver])
+
+Remove comments using `.decomment` and then use JSON.parse. Optional `reviver` arguments comes from JSON.parse method.
 
 ### cjson.replace(str, obj)
 
