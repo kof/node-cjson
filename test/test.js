@@ -18,11 +18,9 @@ var data = {
 
 };
 
-
 a.doesNotThrow(function() {
     cjson.load(fixtures + '/conf1.json');
 }, 'valid config loaded');
-
 
 a.deepEqual(cjson.load(fixtures + '/conf1.json'), data.conf1, 'data is correct');
 
