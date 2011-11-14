@@ -14,8 +14,8 @@ var data = {
     },
     conf5: {"'key/*test*/'": "'value//test'"},
     conf6: {"key\"/*test*/": "value\"//test"},
-    conf7: {"key": "{{root}}/src"}
-
+    conf7: {"key": "{{root}}/src"},
+    conf8: {}
 };
 
 a.doesNotThrow(function() {
@@ -35,6 +35,8 @@ a.deepEqual(cjson.load(fixtures + '/conf5.json'), data.conf5, 'single and double
 a.deepEqual(cjson.load(fixtures + '/conf6.json'), data.conf6, 'escaped double quote inside of a string');
 
 a.deepEqual(cjson.load(fixtures + '/conf7.json', {replace: {root: '/usr'}}), {"key": "/usr/src"}, 'tmpl replacement');
+
+a.deepEqual(cjson.load(fixtures + '/conf8.json'), data.conf8, 'string-like comment');
 
 var data1 = {
     conf1: {key: 'value'},
