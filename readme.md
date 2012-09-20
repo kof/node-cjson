@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/kof/node-cjson.png)](http://travis-ci.org/kof/node-cjson)
 ## CJSON (Commented Javascript Object Notation) is a comments enabled json config loader. 
 
 JSON has a good spec, is implemented in every language, has easy to read syntax and is much more powerfull then ini files.
