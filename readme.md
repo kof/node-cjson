@@ -37,6 +37,7 @@ Load config file from given path, array of paths or directory. Second parameter 
 - `options` {Boolean|Object} optional options
 
 `options` defaults:
+
 	{
 	    merge: false,
 	    replace: null,
