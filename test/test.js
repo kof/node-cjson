@@ -59,5 +59,15 @@ var str = require('fs').readFileSync(fixtures + '/conf2.json').toString();
 
 a.deepEqual(cjson.parse(str), data.conf2, '.parse method with comments');
 
+a.deepEqual(cjson.extend({test1: 1}, {test2: 2}), {test1: 1, test2: 2}, 'extend 2 simple objects');
+a.deepEqual(cjson.extend({test1: 1}, {test2: 2}, {test3: 3}), {test1: 1, test2: 2, test3: 3}, 'extend 3 simple objects');
+a.deepEqual(cjson.extend({test1: 1}, true), {test1: 1}, '2 arg is not an object');
+a.deepEqual(cjson.extend( true, {test1: {test1: 1}}, {test1: {test2: 2} } ), { test1: {test1: 1, test2: 2} }, 'deep extend' );
+a.deepEqual(cjson.extend( true, {test: {test: 'test'}}, {test: {test: 'test'} } ), {test: {test: 'test'} }, 'deep extend, check endless lop' );
+var one = {a: {b: 1}},
+    two = {a: {b: 2}};
+cjson.extend(true, {}, one, two);
+a.notDeepEqual(one, two, 'original deep object is not mangled');
+
 console.log('All tests passed.');
 
