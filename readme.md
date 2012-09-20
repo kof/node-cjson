@@ -1,5 +1,5 @@
 [![build status](https://secure.travis-ci.org/kof/node-cjson.png)](http://travis-ci.org/kof/node-cjson)
-## CJSON (Commented Javascript Object Notation) is a comments enabled json config loader. 
+## CJSON (Commented Javascript Object Notation) is a comments enabled json config loader.
 
 JSON has a good spec, is implemented in every language, has easy to read syntax and is much more powerfull then ini files.
 
@@ -12,10 +12,10 @@ The purpose of this module is to avoid dirty javascript configs and to enable cl
 CJSON supports javascript style comments: singleline "//" and  multiline "/**/". It takes care about comments inside of strings.
 
 Example of such shiny config file:
-	
+
 	/*
 	 * This is my app configuration file.
-	 * 
+	 *
 	 */
 	{
 		"host": "localhost",
@@ -32,48 +32,50 @@ Example of such shiny config file:
 ### cjson.load(path, [options]);
 
 Load config file from given path, array of paths or directory. Second parameter is optional and can be a boolean or object.
- 
+
 - `path` {string} absolute path to the file
-- `options` {boolean|Object} optional options 
+- `options` {boolean|Object} optional options
 
 `options` defaults:
 	{
 		merge: false,
-		replace: null
+		replace: null,
+		freeze: false
 	}
 
 If you pass `true` as second param, its the same like `{merge: true}` and will merge all configs together.
 `replace` allows you to do some string replacements, see `cjson.replace`.
- 
+`freeze` - freeze config recursively, see `cjson.freeze`
+
 Examples:
-	
-	// just one config 
+
+	// just one config
 	var conf = cjson.load('/path/to/your/config.json');
 
-	// array of configs 
+	// array of configs
 	var conf = cjson.load(['/path/to/your/config1.json', '/path/to/your/config2.json']);
-	
+
 	//output
 	{
 		config1: {key1: 'value1'}
 		config2: {key2: 'value2'}
 	}
-	
-	
+
+
 	// use optional merge parameter
-	// array of configs 
+	// array of configs
 	var conf = cjson.load(['/path/to/your/config1.json', '/path/to/your/config2.json'], true);
-	
+
 	// output
 	{
 		key1: 'value1',
 		key2: 'value2'
 	}
-	
-	
+
+
 	// load all config files from a directory
 	var conf = cjson.load('/path/to/your/configs');
-	
+
 	// overwriting dev config with production
 	var paths = ['/path/to/conf.json'];
 	if (process.env.NODE_ENV ==='production') {
@@ -83,7 +85,7 @@ Examples:
 
 ### cjson.extend([deep], target, object1, [objectN])
 
-Merge the contents of two or more objects together into the first object. 
+Merge the contents of two or more objects together into the first object.
 
 - `deep` If true, the merge becomes recursive.
 - `target` The object to extend. It will receive the new properties.
@@ -96,24 +98,28 @@ Example:
 
 ### cjson.decomment(str)
 
-Remove javascript style comments, singleline - '//' and multiline - '/**/'. It takes care 
+Remove javascript style comments, singleline - '//' and multiline - '/**/'. It takes care
 about comments inside of strings and escaping.
 
 ### cjson.parse(str, [reviver])
 
-Like `JSON.parse`, but it takes care about comments. Optional `reviver` argument 
-is for `JSON.parse` method and will be called for every key and value at every level 
+Like `JSON.parse`, but it takes care about comments. Optional `reviver` argument
+is for `JSON.parse` method and will be called for every key and value at every level
 of the final result
 
 ### cjson.replace(str, obj)
 
-Replace all strings `{{key}}` contained in `{key: 'value'}`, where `key` can be any 
+Replace all strings `{{key}}` contained in `{key: 'value'}`, where `key` can be any
 property of passed `obj`.
 
 Example:
 	var str = '{"path": "{{root}}/src"}'; // json file contents
-	cjson.replace(str, {root: '/usr'}); // '{"path": "/usr/src"}'  
-	
+	cjson.replace(str, {root: '/usr'}); // '{"path": "/usr/src"}'
+
+### cjson.freeze(obj)
+
+Recursively freeze an object.
+
 ## Installation
 
 	npm install cjson
