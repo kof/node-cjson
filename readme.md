@@ -34,21 +34,22 @@ Example of such shiny config file:
 Load config file from given path, array of paths or directory. Second parameter is optional and can be a boolean or object.
 
 - `path` {String|Array} absolute path to the file, array of paths or directory
-- `options` {Boolean|Object} optional options
+- `options` {Boolean|Object} optional options. If you pass `true` as second param, its the same like `    {merge: true}` and will merge all configs together.
+
 
 `options` defaults:
 
 	{
+		// merge all passed/found config files, see `cjson.extend`
 	    merge: false,
+	    // allows you to do some string replacements, see `cjson.replace`.
 	    replace: null,
+	    // freeze config recursively, see `cjson.freeze`
 	    freeze: false,
+	    // you can use any other extension for your config files, f.e. *.cjson
 	    ext: 'json'
 	}
 
-If you pass `true` as second param, its the same like `{merge: true}` and will merge all configs together.
-`replace` allows you to do some string replacements, see `cjson.replace`.
-`freeze` - freeze config recursively, see `cjson.freeze`
-`ext` - you can use any other extension for your config files, f.e. *.cjson
 
 Examples:
 
@@ -97,7 +98,7 @@ Merge the contents of two or more objects together into the first object.
 
 Example:
 
-	var object = $.extend({}, object1, object2);
+	var object = cjson.extend({}, object1, object2);
 
 ### cjson.decomment(str)
 
