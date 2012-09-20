@@ -38,14 +38,16 @@ Load config file from given path, array of paths or directory. Second parameter 
 
 `options` defaults:
 	{
-		merge: false,
-		replace: null,
-		freeze: false
+	    merge: false,
+	    replace: null,
+	    freeze: false,
+	    ext: 'json'
 	}
 
 If you pass `true` as second param, its the same like `{merge: true}` and will merge all configs together.
 `replace` allows you to do some string replacements, see `cjson.replace`.
 `freeze` - freeze config recursively, see `cjson.freeze`
+`ext` - you can use any other extension for your config files, f.e. *.cjson
 
 Examples:
 

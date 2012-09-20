@@ -55,6 +55,8 @@ a.deepEqual(cjson.load([fixtures + '/conf1.json', fixtures + '/conf6.json'], tru
 
 a.deepEqual(cjson.load(fixtures), data, 'load all and merge them');
 
+a.deepEqual(cjson.load(fixtures, {ext: 'cjson'}), {conf9: {a: 1}}, 'use custom ext');
+
 var str = require('fs').readFileSync(fixtures + '/conf2.json').toString();
 
 a.deepEqual(cjson.parse(str), data.conf2, '.parse method with comments');
