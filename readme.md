@@ -46,8 +46,8 @@ Load config file from given path, array of paths or directory. Second parameter 
 	    replace: null,
 	    // freeze config recursively, see `cjson.freeze`
 	    freeze: false,
-	    // you can use any other extension for your config files, f.e. *.cjson
-	    ext: 'json'
+	    // you can use any other extension for your config files, f.e. .cjson
+	    ext: '.json'
 	}
 
 
