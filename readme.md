@@ -120,6 +120,7 @@ Replace all strings `{{key}}` contained in `{key: 'value'}`, where `key` can be 
 property of passed `obj`.
 
 Example:
+
 	var str = '{"path": "{{root}}/src"}'; // json file contents
 	cjson.replace(str, {root: '/usr'}); // '{"path": "/usr/src"}'
 
