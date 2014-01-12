@@ -1,7 +1,7 @@
 [![build status](https://secure.travis-ci.org/kof/node-cjson.png)](http://travis-ci.org/kof/node-cjson)
 ## CJSON (Commented Javascript Object Notation) is a comments enabled json config loader.
 
-JSON has a good spec, is implemented in every language, has easy to read syntax and is much more powerfull than ini files.
+JSON has a good spec, is implemented in every language, has easy to read syntax and is much more powerful than ini files.
 
 JSON is perfect for writing config files, except of one problem - there is no comments, but sometimes config files get large and need to be commented.
 
@@ -47,7 +47,10 @@ Load config file from given path, array of paths or directory. Second parameter 
 	    // freeze config recursively, see `cjson.freeze`
 	    freeze: false,
 	    // you can use any other extension for your config files, f.e. .cjson
-	    ext: '.json'
+	    ext: '.json',
+	    // you can use any parser, f.e. if you need a more detailed error description,
+	    // you could use "jsonlint" module
+	    parse: JSON.parse
 	}
 
 
@@ -123,6 +126,19 @@ Example:
 ### cjson.freeze(obj)
 
 Recursively freeze an object.
+
+## Detailed error message
+
+Use [jsonlint](http://github.com/zaach/jsonlint) to get an detailed parse error message.
+
+	npm i jsonlint
+
+Example:
+
+	var cjson = require('cjson'),
+		jsonlint = require('jsonlint');
+	cjson.options.parse = jsonlint.parse
+
 
 ## Installation
 

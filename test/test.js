@@ -1,5 +1,5 @@
 var a = require('assert');
-var cjson = require('../lib/cjson');
+var cjson = require('../');
 var fixtures = __dirname + '/fixtures';
 
 var data = {
