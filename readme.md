@@ -48,9 +48,8 @@ Load config file from given path, array of paths or directory. Second parameter 
 	    freeze: false,
 	    // you can use any other extension for your config files, f.e. .cjson
 	    ext: '.json',
-	    // you can use any parser, f.e. if you need a more detailed error description,
-	    // you could use "jsonlint" module
-	    parse: JSON.parse
+	    // you can use any parser, f.e. you could switch to JSON.parse for speed
+	    parse: jsonlint.parse
 	}
 
 
@@ -127,18 +126,6 @@ Example:
 ### cjson.freeze(obj)
 
 Recursively freeze an object.
-
-## Detailed error message
-
-Use [jsonlint](http://github.com/zaach/jsonlint) to get an detailed parse error message.
-
-	npm i jsonlint
-
-Example:
-
-	var cjson = require('cjson'),
-		jsonlint = require('jsonlint');
-	cjson.options.parse = jsonlint.parse
 
 
 ## Installation

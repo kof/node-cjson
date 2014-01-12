@@ -1,5 +1,6 @@
 var fs = require('fs'),
-    Path = require('path');
+    Path = require('path'),
+    jsonlint = require('jsonlint');
 
 /**
  * Default options.
@@ -15,9 +16,8 @@ exports.options = {
     freeze: false,
     // you can use any other extension for your config files, f.e. *.cjson
     ext: '.json',
-    // you can use any parser, f.e. if you need a more detailed error description,
-    // you could use "jsonlint" module
-    parse: JSON.parse
+    // you can use any parser, f.e. you could switch to JSON.parse for speed
+    parse: jsonlint.parse
 }
 
 /**
@@ -216,8 +216,9 @@ exports.load = function load(path, options) {
 
     try {
         data = exports.parse(data);
-    } catch(e) {
-        throw new Error(e.message + '"\nFile: "' + path + '"\n');
+    } catch(err) {
+        err.message += '"\nFile: "' + path + '"';
+        throw err;
     }
 
     if (options.freeze) {
