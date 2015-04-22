@@ -217,7 +217,7 @@ exports.load = function load(path, options) {
     try {
         data = exports.parse(data);
     } catch(err) {
-        err.message += '"\nFile: "' + path + '"';
+        err.message += '\nFile: "' + path + '"';
         throw err;
     }
 

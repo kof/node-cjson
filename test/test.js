@@ -61,6 +61,21 @@ var str = require('fs').readFileSync(fixtures + '/conf2.json').toString();
 
 a.deepEqual(cjson.parse(str), data.conf2, '.parse method with comments');
 
+(function errors() {
+    try {
+        cjson.load(fixtures + '/errors/invalid.cjson');
+    } catch (e) {
+        // Matching the line "Expecting ...."
+        var message = e.message.match(/^[^\^]*[^]\s(.*)\sFile:.*$/)[1];
+        // Message was errorneously appended with a quote.
+        a.equal(
+            message,
+            "Expecting 'STRING', 'NUMBER', 'NULL', 'TRUE', 'FALSE', '{', '[', got 'undefined'",
+            'Assert that the error message is properly formatted.'
+        );
+    }
+}());
+
 (function extend() {
     a.deepEqual(cjson.extend({test1: 1}, {test2: 2}), {test1: 1, test2: 2}, 'extend 2 simple objects');
     a.deepEqual(cjson.extend({test1: 1}, {test2: 2}, {test3: 3}), {test1: 1, test2: 2, test3: 3}, 'extend 3 simple objects');
@@ -90,4 +105,3 @@ a.deepEqual(cjson.parse(str), data.conf2, '.parse method with comments');
 }())
 
 console.log('All tests passed.');
-
