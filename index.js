@@ -1,6 +1,6 @@
 var fs = require('fs'),
     Path = require('path'),
-    jsonlint = require('jsonlint');
+    jph = require('json-parse-helpfulerror');
 
 /**
  * Default options.
@@ -16,8 +16,10 @@ exports.options = {
     freeze: false,
     // you can use any other extension for your config files, f.e. *.cjson
     ext: '.json',
-    // you can use any parser, f.e. you could switch to JSON.parse for speed
-    parse: jsonlint.parse
+    // you can use any parser you want. the default uses JSON.parse for maximum
+    // speed, if it throws it uses uses an alternative parser to give more
+    // helpful errors
+    parse: jph.parse
 }
 
 /**
