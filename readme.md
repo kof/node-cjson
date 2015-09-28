@@ -1,15 +1,15 @@
 [![build status](https://secure.travis-ci.org/kof/node-cjson.png)](http://travis-ci.org/kof/node-cjson)
-## CJSON (Commented Javascript Object Notation) is a comments enabled json config loader.
+## CJSON (Commented JavaScript Object Notation) is a comments enabled json config loader.
 
 JSON has a good spec, is implemented in every language, has easy to read syntax and is much more powerful than ini files.
 
 JSON is perfect for writing config files, except of one problem - there is no comments, but sometimes config files get large and need to be commented.
 
-Well, you could just evaluate json file as a javascript using one-liner, right?
+Well, you could just evaluate json file as a JavaScript using one-liner, right?
 
-The purpose of this module is to avoid dirty javascript configs and to enable clean, consistent, secure, portable and JSON valid notation.
+The purpose of this module is to avoid dirty JavaScript configs and to enable clean, consistent, secure, portable and JSON valid notation.
 
-CJSON supports javascript style comments: singleline "//" and  multiline "/**/". It takes care about comments inside of strings.
+CJSON supports JavaScript style comments: singleline "//" and  multiline "/**/". It takes care about comments inside of strings.
 
 Example of such shiny config file:
 
@@ -104,7 +104,7 @@ Example:
 
 ### cjson.decomment(str)
 
-Remove javascript style comments, singleline - '//' and multiline - '/**/'. It takes care
+Remove JavaScript style comments, singleline - '//' and multiline - '/**/'. It takes care
 about comments inside of strings and escaping.
 
 ### cjson.parse(str, [reviver])
