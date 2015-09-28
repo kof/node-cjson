@@ -65,12 +65,12 @@ a.deepEqual(cjson.parse(str), data.conf2, '.parse method with comments');
     try {
         cjson.load(fixtures + '/errors/invalid.cjson');
     } catch (e) {
-        // Matching the line "Expecting ...."
-        var message = e.message.match(/^[^\^]*[^]\s(.*)\sFile:.*$/)[1];
-        // Message was errorneously appended with a quote.
+        // Taking the first line from the error message
+        var message = e.message.split('\n')[0];
+        // The error we expect is that the value ended with \n instead of quotes
         a.equal(
-            message,
-            "Expecting 'STRING', 'NUMBER', 'NULL', 'TRUE', 'FALSE', '{', '[', got 'undefined'",
+            message.trim().toLowerCase(),
+            "unexpected token '}' at 2:17",
             'Assert that the error message is properly formatted.'
         );
     }
