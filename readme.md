@@ -14,15 +14,15 @@ CJSON supports JavaScript style comments: singleline "//" and  multiline "/**/".
 Example of such shiny config file:
 
 ```javascript
-	/*
-	 * This is my app configuration file.
-	 *
-	 */
-	{
-		"host": "localhost",
-		// app is listening on this port
-		"port": 8888
-	}
+/*
+ * This is my app configuration file.
+ *
+ */
+{
+	"host": "localhost",
+	// app is listening on this port
+	"port": 8888
+}
 ```
 
 ## API
