@@ -212,6 +212,9 @@ exports.load = function load(path, options) {
 
     data = fs.readFileSync(path, 'utf-8');
 
+    // replace BOM Character
+    data = data.replace(/\ufeff/g, '');
+
     if (options.replace) {
         data = exports.replace(data, options.replace);
     }
