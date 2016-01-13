@@ -15,7 +15,8 @@ var data = {
     conf5: {"'key/*test*/'": "'value//test'"},
     conf6: {"key\"/*test*/": "value\"//test"},
     conf7: {"key": "{{root}}/src"},
-    conf8: {}
+    conf8: {},
+    conf10: {"test":"valid JSON, except for the the hidden BOM character"},
 };
 
 a.doesNotThrow(function() {
@@ -37,6 +38,8 @@ a.deepEqual(cjson.load(fixtures + '/conf6.json'), data.conf6, 'escaped double qu
 a.deepEqual(cjson.load(fixtures + '/conf7.json', {replace: {root: '/usr'}}), {"key": "/usr/src"}, 'tmpl replacement');
 
 a.deepEqual(cjson.load(fixtures + '/conf8.json'), data.conf8, 'string-like comment');
+
+a.deepEqual(cjson.load(fixtures + '/conf10.json'), data.conf10, 'BOM character');
 
 var data1 = {
     conf1: {key: 'value'},
@@ -102,6 +105,6 @@ a.deepEqual(cjson.parse(str), data.conf2, '.parse method with comments');
     data1.abc = 123;
     data1.a = 123;
     a.deepEqual(data1, data2, 'data1 wasn\'t changed');
-}())
+}());
 
 console.log('All tests passed.');
