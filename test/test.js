@@ -17,6 +17,24 @@ var data = {
     conf7: {"key": "{{root}}/src"},
     conf8: {},
     conf10: {"test":"valid JSON, except for the the hidden BOM character"},
+    conf11: {
+        "subobject": {
+            "test": 5
+        },
+        "subarray": [
+            {
+                "foo": 7
+            }
+        ]
+    },
+    conf12: {
+        "num": 1,
+        "str": "moo",
+        "bool": false,
+        "arr": [],
+        "obj": {},
+        "null": null
+    }
 };
 
 a.doesNotThrow(function() {
@@ -40,6 +58,12 @@ a.deepEqual(cjson.load(fixtures + '/conf7.json', {replace: {root: '/usr'}}), {"k
 a.deepEqual(cjson.load(fixtures + '/conf8.json'), data.conf8, 'string-like comment');
 
 a.deepEqual(cjson.load(fixtures + '/conf10.json'), data.conf10, 'BOM character');
+
+var conf11 = cjson.load(fixtures + '/conf11.json');
+a.deepEqual(cjson.load(fixtures + '/templates/conf11tmpl.json', {replace: conf11}), data.conf11, 'object and array as template variables');
+
+var conf12 = cjson.load(fixtures + '/conf12.json');
+a.deepEqual(cjson.load(fixtures + '/templates/conf12tmpl.json', {replace: conf12}), data.conf12, 'JSON types as template variables');
 
 var data1 = {
     conf1: {key: 'value'},

@@ -99,7 +99,15 @@ exports.parse = function(str, reviver) {
  */
 exports.replace = function(str, data) {
     return str.replace(/\{\{([^}]+)\}\}/g, function(match, search) {
-        return data[search] ? data[search] : match;
+        if (data.hasOwnProperty(search)) {
+            // If the variable is an object, stringify it before replacement.
+            // The false positive of "null" is fine in this case.
+            if (typeof data[search] === 'object') {
+                return JSON.stringify(data[search]);
+            }
+            return data[search];
+        }
+        return match;
     });
 };
 
