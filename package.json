@@ -1,7 +1,7 @@
 {
   "name": "cjson",
   "description": "cjson - Commented JavaScript Object Notation. It is a json loader, which parses only valid json files, but with comments enabled. Useful for loading configs.",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "repository": "git://github.com/kof/node-cjson.git",
   "keywords": [
     "json",
