@@ -41,7 +41,7 @@ Load config file from given path, array of paths or directory. Second parameter 
 `options` defaults:
 ```javascript
 {
-	// merge all passed/found config files, see `cjson.extend`
+    // deep merge all passed/found config files, see `cjson.extend`
     merge: false,
     // allows you to do some string replacements, see `cjson.replace`.
     replace: null,
