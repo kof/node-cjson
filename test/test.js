@@ -82,6 +82,16 @@ a.deepEqual(cjson.load([fixtures + '/conf1.json', fixtures + '/conf6.json'], tru
 
 a.deepEqual(cjson.load(fixtures), data, 'load all and merge them');
 
+a.deepEqual(
+    cjson.load([
+        fixtures + '/conf1.json',
+        'missing-conf.json',
+        fixtures + '/conf6.json'
+    ], true),
+    data2,
+    'load a missing config file among an array of config files and merge them'
+);
+
 a.deepEqual(cjson.load(fixtures, {ext: '.cjson'}), {conf9: {a: 1}}, 'use custom ext');
 
 var str = require('fs').readFileSync(fixtures + '/conf2.json').toString();
