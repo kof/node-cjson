@@ -191,14 +191,16 @@ exports.load = function load(path, options) {
     if (Array.isArray(path)) {
         conf = {};
         path.forEach(function(path) {
-            var data = load(path, options),
-                filename;
+            if (fs.existsSync(path)) {
+                var data = load(path, options),
+                    filename;
 
-            if (options.merge) {
-                exports.extend(true, conf, data);
-            } else {
-                filename = Path.basename(path, options.ext);
-                conf[filename] = data;
+                if (options.merge) {
+                    exports.extend(true, conf, data);
+                } else {
+                    filename = Path.basename(path, options.ext);
+                    conf[filename] = data;
+                }
             }
         });
 
