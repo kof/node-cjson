@@ -3,7 +3,7 @@
 
 JSON has a good spec, is implemented in every language, has easy to read syntax and is much more powerful than ini files.
 
-JSON is perfect for writing config files, except of one problem - there is no comments, but sometimes config files get large and need to be commented.
+JSON is perfect for writing config files, except of one problem - there are no comments, but sometimes config files get large and need to be commented.
 
 Well, you could just evaluate json file as a JavaScript using one-liner, right?
 
@@ -35,7 +35,7 @@ Example of such shiny config file:
 Load config file from given path, array of paths or directory. Second parameter is optional and can be a boolean or object.
 
 - `path` {String|Array} absolute path to the file, array of paths or directory
-- `options` {Boolean|Object} optional options. If you pass `true` as second param, its the same like `    {merge: true}` and will merge all configs together.
+- `options` {Boolean|Object} optional options. If you pass `true` as second param, its the same as `{merge: true}` and will merge all configs together.
 
 
 `options` defaults:
@@ -112,18 +112,18 @@ var object = cjson.extend({}, object1, object2);
 ### cjson.decomment(str)
 
 Remove JavaScript style comments, singleline - '//' and multiline - '/**/'. It takes care
-about comments inside of strings and escaping.
+of comments inside of strings and escaping.
 
 ### cjson.parse(str, [reviver])
 
-Like `JSON.parse`, but it takes care about comments. Optional `reviver` argument
+Like `JSON.parse`, but it takes care of comments. Optional `reviver` argument
 is for `JSON.parse` method and will be called for every key and value at every level
-of the final result
+of the final result.
 
 ### cjson.replace(str, obj)
 
 Replace all strings `{{key}}` contained in `{key: 'value'}`, where `key` can be any
-property of passed `obj`.
+property of the passed `obj`.
 
 Example:
 ```javascript
